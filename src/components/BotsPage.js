@@ -16,10 +16,15 @@ function BotsPage() {
     setBotArmy([...botArmy, bot])
   }
   console.log(botArmy)
+  
+  function removeBot(bot){
+    const botArmyList = botArmy.filter((botSoilder)=> botSoilder !== bot)
+    setBotArmy(botArmyList)
+  }
 
   return (
     <div>
-      <YourBotArmy army={botArmy}  />
+      <YourBotArmy army={botArmy}  onGetItem={removeBot}/>
       <BotCollection collection={bots} onGetItem={handleGet}/>
     </div>
   )

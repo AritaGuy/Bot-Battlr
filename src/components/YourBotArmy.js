@@ -5,8 +5,8 @@ function YourBotArmy({army, onGetItem}) {
   //your bot army code here...
   console.log(army)
   const card = army
-  function handleClick(){
-    // console.log('hello world')
+  function handleClick(bot){
+    onGetItem(bot)
   }
   
   return (
