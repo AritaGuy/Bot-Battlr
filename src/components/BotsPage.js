@@ -5,17 +5,22 @@ import BotCollection from "./BotCollection";
 function BotsPage() {
   //start here with your code for step one
   const[bots, setBots]=useState([])
+  const[botArmy, setBotArmy]=useState([])
   useEffect(()=>{
     fetch('http://localhost:8002/bots')
     .then((r)=>r.json())
     .then((bot)=>setBots(bot))
   }, [])
-  
+
+  function handleGet(bot){
+    setBotArmy([...botArmy, bot])
+  }
+  console.log(botArmy)
 
   return (
     <div>
-      <YourBotArmy />
-      <BotCollection collection={bots}/>
+      <YourBotArmy army={botArmy}  />
+      <BotCollection collection={bots} onGetItem={handleGet}/>
     </div>
   )
 }
