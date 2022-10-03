@@ -22,9 +22,18 @@ function BotsPage() {
     setBotArmy(botArmyList)
   }
 
+  function handlePermanentDelete(bot){
+    const botArmyList = botArmy.filter((botSoilder)=> botSoilder !== bot)
+    setBotArmy(botArmyList)
+
+    fetch(`http://localhost:8002/bots/${bot.id}`, {
+        method: "DELETE"})
+
+  }
+
   return (
     <div>
-      <YourBotArmy army={botArmy}  onGetItem={removeBot}/>
+      <YourBotArmy army={botArmy}  onGetItem={removeBot} onDeleteItem={handlePermanentDelete}/>
       <BotCollection collection={bots} onGetItem={handleGet}/>
     </div>
   )
